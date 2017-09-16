@@ -1,18 +1,25 @@
+---
+
+# (c) Wong Hoi Sing Edison <hswong3i@pantarei-design.com>
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+
 version: "2"
 settings:
-
-  conductor:
-    # The Conductor container does the heavy lifting, and provides a portable
-    # Python runtime for building your target containers. It should be derived
-    # from the same distribution as you're building your target containers with.
-    base: centos:7
-    # roles_path:   # Specify a local path containing Ansible roles
-    # volumes:      # Provide a list of volumes to mount
-    # environment:  # List or mapping of environment variables
-
-  # Set the name of the project. Defaults to basename of the project directory.
-  # For built services, concatenated with service name to form the built image name.
-  project_name: ansible-container-confluence
+  # The Conductor container does the heavy lifting, and provides a portable
+  # Python runtime for building your target containers. It should be derived
+  # from the same distribution as you're building your target containers with.
+  conductor_base: ubuntu:16.04
 
   # The deployment_output_path is mounted to the Conductor container, and the 
   # `run` and `deployment` commands then write generated Ansible playbooks to it.
@@ -24,7 +31,7 @@ settings:
   #k8s_auth:
     # path to a K8s config file
     #config_file:
-    # name of a context found within the config file
+    # name of a context found within the config.json file
     #context:
     # URL for accessing the K8s API
     #host:
@@ -36,7 +43,7 @@ settings:
     #cert_file:
     # Path to a key file
     #key_file:
-    # boolean, indicating if SSL certs should be validated
+    #boolean, indicating if SSL certs should be validated
     #verify_ssl:
 
   # When using the k8s or openshift engines, use the following to set the namespace.
@@ -47,19 +54,33 @@ settings:
   #  description:
   #  display_name:
 
-services: {}
+services:
   # Add your containers here, specifying the base image you want to build from.
   # To use this example, uncomment it and delete the curly braces after services key.
   # You may need to run `docker pull ubuntu:trusty` for this to work.
 
-  # web:
-  #   from: "centos:7"
-  #   ports:
-  #     - "80:80"
-  #   command: ["/usr/bin/dumb-init", "/usr/sbin/apache2ctl", "-D", "FOREGROUND"]
-  #   dev_overrides:
-  #     environment:
-  #       - "DEBUG=1"
+  confluence:
+    from: "ubuntu:16.04"
+    roles:
+      - role: python
+        gather_facts: no
+      - role: apt
+      - role: java
+      - role: confluence
+      - role: mariadb-connector-java
+        mariadb_connector_java_dest: "/opt/atlassian/confluence/confluence/WEB-INF/lib/mariadb-connector-java.jar"
+      - role: dumb-init
+        dumb_init_dest: "/usr/bin/dumb-init"
+    ports:
+      - "8090:8090"
+    tmpfs:
+      - /run
+    entrypoint: ["/usr/bin/dumb-init", "--"]
+    command: ["/etc/init.d/confluence", "start", "-fg"]
+    dev_overrides:
+      environment:
+        - "DEBUG=1"
+
 registries: {}
   # Add optional registries used for deployment. For example:
   #  google:
