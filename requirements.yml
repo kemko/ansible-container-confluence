@@ -3,3 +3,27 @@
 # When making the Conductor image `ansible-galaxy install -r requirements.yml` is executed
 # using this file. Follow the instructions at http://docs.ansible.com/ansible/galaxy.html
 # to include any roles you want installed prior to running main.yml.
+
+- name: python
+  src: https://github.com/alvistack/ansible-role-python
+  version: master
+
+- name: apt
+  src: https://github.com/alvistack/ansible-role-apt
+  version: master
+
+- name: java
+  src: https://github.com/alvistack/ansible-role-java
+  version: master
+
+- name: confluence
+  src: https://github.com/alvistack/ansible-role-confluence
+  version: master
+
+- name: dumb-init
+  src: https://github.com/alvistack/ansible-role-dumb-init
+  version: master
+
+- name: mariadb-connector-java
+  src: https://github.com/alvistack/ansible-role-mariadb-connector-java
+  version: master
