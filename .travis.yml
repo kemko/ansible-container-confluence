@@ -19,7 +19,8 @@ env:
     - ANSIBLE_ROLES_PATH: '../'
 
 before_install:
-  - pip install ansible ansible-container[docker]
+  - pip install --upgrade git+git://github.com/ansible/ansible.git@stable-2.4
+  - pip install --upgrade ansible-container[docker,k8s]
 
 install:
   - pip install -r ansible-requirements.txt
