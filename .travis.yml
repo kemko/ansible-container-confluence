@@ -35,3 +35,6 @@ script:
   - docker ps -a
   - docker images
   - ansible-container stop --force
+
+notifications:
+  webhooks: https://galaxy.ansible.com/api/v1/notifications/
