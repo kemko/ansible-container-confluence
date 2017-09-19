@@ -20,10 +20,10 @@
   src: https://github.com/alvistack/ansible-role-confluence
   version: master
 
-- name: dumb-init
-  src: https://github.com/alvistack/ansible-role-dumb-init
-  version: master
-
 - name: mariadb-connector-java
   src: https://github.com/alvistack/ansible-role-mariadb-connector-java
+  version: master
+
+- name: dumb-init
+  src: https://github.com/alvistack/ansible-role-dumb-init
   version: master
