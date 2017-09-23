@@ -28,6 +28,7 @@ install:
   - ansible-galaxy install -r requirements.yml
 
 script:
+  - docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD"
   - docker version
   - docker-compose version
   - docker info
@@ -37,6 +38,17 @@ script:
   - docker ps -a
   - docker images
   - ansible-container stop --force
+
+after_success:
+  - |
+    if [[ $TRAVIS_TAG =~ ^[0-9]+\.[0-9]+\.[0-9]+ ]]; then
+      read -a v <<< $(echo ${TRAVIS_TAG} | sed 's/[\.\-]/ /g')
+      ansible-container push --push-to docker --tag $TRAVIS_TAG
+      ansible-container push --push-to docker --tag ${v[0]}.${v[1]}.${v[2]}
+      ansible-container push --push-to docker --tag ${v[0]}.${v[1]}
+      ansible-container push --push-to docker --tag ${v[0]}
+      ansible-container push --push-to docker --tag latest
+    fi
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
