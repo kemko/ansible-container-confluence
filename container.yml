@@ -28,7 +28,7 @@ settings:
 
   # Set the name of the project. Defaults to basename of the project directory.
   # For built services, concatenated with service name to form the built image name.
-  project_name: alvistack
+  project_name: ansible-container-confluence
 
   # The deployment_output_path is mounted to the Conductor container, and the 
   # `run` and `deployment` commands then write generated Ansible playbooks to it.
@@ -68,7 +68,7 @@ services:
   # To use this example, uncomment it and delete the curly braces after services key.
   # You may need to run `docker pull ubuntu:trusty` for this to work.
 
-  ansible-container-confluence:
+  confluence:
     from: "ubuntu:16.04"
     roles:
       - role: python
@@ -96,3 +96,4 @@ registries:
   docker:
     url: https://index.docker.io/v1/
     namespace: alvistack
+    repository_prefix: ansible-container
