@@ -30,4 +30,4 @@
         url: "http://localhost:8090"
         return_content: "yes"
       register: result
-      failed_when: "'Atlassian Confluence' not in result.content"
+      failed_when: "'Set up Confluence - Confluence' not in result.content"
