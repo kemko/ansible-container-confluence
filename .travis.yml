@@ -37,6 +37,10 @@ script:
   - ansible-container run
   - docker ps -a
   - docker images
+  - ansible-playbook -i localhost, -c local tests/test.yml --syntax-check
+  - ansible-playbook -i localhost, -c local tests/test.yml --diff --verbose
+  - ansible-playbook -i localhost, -c local tests/test.yml --diff --verbose
+  - tail -n 1 $ANSIBLE_LOG_PATH | grep -Eq 'changed=0 +unreachable=0 +failed=0'
   - ansible-container stop --force
 
 after_success:
