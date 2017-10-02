@@ -81,6 +81,7 @@ services:
       - role: dumb-init
         dumb_init_dest: "/usr/bin/dumb-init"
     ports:
+      - "8000:8000"
       - "8090:8090"
     tmpfs:
       - /run
@@ -89,8 +90,6 @@ services:
     dev_overrides:
       environment:
         - "DEBUG=1"
-      volumes:
-        - /var/atlassian/application-data/confluence:/var/atlassian/application-data/confluence
 
 registries:
   # Add optional registries used for deployment. For example:

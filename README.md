@@ -1,12 +1,13 @@
 Ansible Container for Confluence
 ================================
 
-[![Build Status](https://travis-ci.org/alvistack/ansible-container-confluence.svg?branch=master)](https://travis-ci.org/alvistack/ansible-container-confluence)
+[![Travis](https://img.shields.io/travis/alvistack/ansible-container-confluence.svg)](https://travis-ci.org/alvistack/ansible-container-confluence)
 [![GitHub release](https://img.shields.io/github/release/alvistack/ansible-container-confluence.svg)](https://github.com/alvistack/ansible-container-confluence/releases)
 [![GitHub license](https://img.shields.io/github/license/alvistack/ansible-container-confluence.svg)](https://github.com/alvistack/ansible-container-confluence/blob/master/LICENSE)
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.container--confluence-blue.svg)](https://galaxy.ansible.com/alvistack/container-confluence)
+[![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/ansible-container-confluence.svg)](https://hub.docker.com/r/alvistack/ansible-container-confluence/)
 
-Ansible Container for Confluence.
+Ansible Container for Atlassian Confluence.
 
 License
 -------
