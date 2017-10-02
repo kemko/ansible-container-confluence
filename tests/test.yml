@@ -19,7 +19,7 @@
   tasks:
     - name: pause
       pause:
-        second: "300"
+        seconds: "300"
 
     - name: check port
       wait_for:
