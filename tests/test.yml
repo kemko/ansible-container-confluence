@@ -26,5 +26,6 @@
       uri:
         url: "http://localhost:8090"
         return_content: "yes"
+        timeout: "300"
       register: result
       failed_when: "'Atlassian Confluence' not in result.content"
