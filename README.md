@@ -7,7 +7,7 @@ Ansible Container for Confluence
 [![Ansible Role](https://img.shields.io/badge/galaxy-alvistack.container--confluence-blue.svg)](https://galaxy.ansible.com/alvistack/container-confluence)
 [![Docker Pulls](https://img.shields.io/docker/pulls/alvistack/ansible-container-confluence.svg)](https://hub.docker.com/r/alvistack/ansible-container-confluence/)
 
-Ansible Container for Confluence.
+Ansible Container for Atlassian Confluence.
 
 License
 -------

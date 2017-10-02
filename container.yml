@@ -81,6 +81,7 @@ services:
       - role: dumb-init
         dumb_init_dest: "/usr/bin/dumb-init"
     ports:
+      - "8000:8000"
       - "8090:8090"
     tmpfs:
       - /run
