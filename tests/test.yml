@@ -22,7 +22,7 @@
         port: "8090"
         timeout: "300"
       async: "300"
-      poll: "1"
+      poll: "10"
 
     - name: check page
       uri:
@@ -31,7 +31,7 @@
         timeout: "300"
         return_content: "yes"
       async: "300"
-      poll: "1"
+      poll: "10"
       register: result
 
     - name: check result
