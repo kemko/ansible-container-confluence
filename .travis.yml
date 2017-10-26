@@ -36,7 +36,7 @@ script:
   - ansible-container build --use-local-python -- --diff --verbose
   - ansible-container run
   - docker ps -a
-  - docker images
+  - docker image list
   - ansible-playbook -i localhost, -c local tests/test.yml --syntax-check
   - ansible-playbook -i localhost, -c local tests/test.yml --diff --verbose
   - ansible-playbook -i localhost, -c local tests/test.yml --diff --verbose
