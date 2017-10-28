@@ -90,6 +90,8 @@ services:
     dev_overrides:
       environment:
         - "DEBUG=1"
+      volumes:
+        - /var/atlassian/application-data/confluence:/var/atlassian/application-data/confluence
 
 registries:
   # Add optional registries used for deployment. For example:
