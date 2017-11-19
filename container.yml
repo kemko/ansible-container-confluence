@@ -76,6 +76,7 @@ services:
       - role: apt
       - role: java
       - role: confluence
+        confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.5.0.tar.gz"
       - role: mariadb-connector-java
         mariadb_connector_java_dest: "/opt/atlassian/confluence/confluence/WEB-INF/lib/mariadb-connector-java.jar"
       - role: dumb-init
