@@ -1,6 +1,12 @@
 Ansible Container for Confluence
 ================================
 
+6.5.1-0alvistack3 - 2017-11-30
+------------------------------
+
+-   3rd release for Confluence 6.5.1
+-   Update README.md about how to configure running instance with tests/config.yml
+
 6.5.1-0alvistack2 - 2017-11-24
 ------------------------------
 

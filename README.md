@@ -20,12 +20,16 @@ This Docker container makes it easy to get an instance of Confluence up and runn
 
 ### Quick Start
 
-For the `COCNFLUENCE_HOME` directory that is used to store the repository data (amongst other things) we recommend mounting a host directory as a [data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/data-volumes), or via a named volume if using a docker version &gt;= 1.9.
+For the `CONFLUENCE_HOME` directory that is used to store the repository data (amongst other things) we recommend mounting a host directory as a [data volume](https://docs.docker.com/engine/tutorials/dockervolumes/#/data-volumes), or via a named volume if using a docker version &gt;= 1.9.
 
 Volume permission is managed by entry scripts. To get started you can use a data volume, or named volumes.
 
 Start Atlassian Confluence Server:
 
+    # Pull latest image
+    docker pull alvistack/ansible-container-confluence
+
+    # Run as detach
     docker run \
         -itd \
         -n confluence \
@@ -39,12 +43,19 @@ Please ensure your container has the necessary resources allocated to it. We rec
 
 ### Configuration
 
-We don't provide any dynamic configuration by using environment variable; by the way, since this Docker container is created by using Ansible Container with [Ansible Role for Confluence](https://github.com/alvistack/ansible-role-confluence), you could create a playbook for your customization, retouch the running Docker instance, then restart it:
+We don't provide any dynamic configuration by using environment variable; by the way, since this Docker container is created by using Ansible Container with [Ansible Role for Confluence](https://github.com/alvistack/ansible-role-confluence), you install all required Ansible Roles, retouch the running Docker instance with `ansible-container` and `--extra-vars`, then restart it:
 
-    ansible-playbook \
-        -i confluence,
-        -c docker
-        /path/to/playbook.yml
+    # Install required Ansible Roles
+    ansible-galaxy install -r requirements.yml
+
+    # Configuration
+    ansible-playbook --verbose --diff \
+        --inventory confluence, \
+        --connection docker \
+        --extra-vars '{"confluence_scheme":"https","confluence_proxy_name":"example.com","confluence_context_path":"confluence"} \
+        tests/config.yml
+
+    # Restart container
     docker restart confluence
 
 Upgrade
