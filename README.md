@@ -32,9 +32,9 @@ Start Atlassian Confluence Server:
     # Run as detach
     docker run \
         -itd \
-        -n confluence \
-        -p 8090:8090 \
-        -v /var/atlassian/application-data/confluence:/var/atlassian/application-data/confluence \
+        --name confluence \
+        --publish 8090:8090 \
+        --volume /var/atlassian/application-data/confluence:/var/atlassian/application-data/confluence \
         alvistack/ansible-container-confluence
 
 **Success**. Confluence is now available on <http://localhost:8090>
