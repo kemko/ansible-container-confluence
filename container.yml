@@ -71,15 +71,15 @@ services:
   confluence:
     from: "ubuntu:16.04"
     roles:
-      - role: python
+      - role: ansible-role-python
         gather_facts: no
-      - role: apt
-      - role: java
-      - role: confluence
+      - role: ansible-role-apt
+      - role: ansible-role-java
+      - role: ansible-role-confluence
         confluence_url: "https://downloads.atlassian.com/software/confluence/downloads/atlassian-confluence-6.5.1.tar.gz"
-      - role: mariadb-connector-java
+      - role: ansible-role-mariadb-connector-java
         mariadb_connector_java_dest: "/opt/atlassian/confluence/confluence/WEB-INF/lib/mariadb-connector-java.jar"
-      - role: dumb-init
+      - role: ansible-role-dumb-init
         dumb_init_dest: "/usr/bin/dumb-init"
     ports:
       - "8000:8000"
