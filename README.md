@@ -52,7 +52,7 @@ We don't provide any dynamic configuration by using environment variable; by the
     ansible-playbook --verbose --diff \
         --inventory confluence, \
         --connection docker \
-        --extra-vars '{"confluence_scheme":"https","confluence_proxy_name":"example.com","confluence_context_path":"confluence"} \
+        --extra-vars '{"confluence_scheme":"https","confluence_proxy_name":"example.com","confluence_context_path":"confluence"}' \
         tests/config.yml
 
     # Restart container
