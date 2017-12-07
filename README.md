@@ -32,9 +32,9 @@ Start Atlassian Confluence Server:
     # Run as detach
     docker run \
         -itd \
-        -n confluence \
-        -p 8090:8090 \
-        -v /var/atlassian/application-data/confluence:/var/atlassian/application-data/confluence \
+        --name confluence \
+        --publish 8090:8090 \
+        --volume /var/atlassian/application-data/confluence:/var/atlassian/application-data/confluence \
         alvistack/ansible-container-confluence
 
 **Success**. Confluence is now available on <http://localhost:8090>
@@ -52,7 +52,7 @@ We don't provide any dynamic configuration by using environment variable; by the
     ansible-playbook --verbose --diff \
         --inventory confluence, \
         --connection docker \
-        --extra-vars '{"confluence_scheme":"https","confluence_proxy_name":"example.com","confluence_context_path":"confluence"} \
+        --extra-vars '{"confluence_scheme":"https","confluence_proxy_name":"example.com","confluence_context_path":"confluence"}' \
         tests/config.yml
 
     # Restart container
