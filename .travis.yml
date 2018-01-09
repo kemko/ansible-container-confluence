@@ -33,13 +33,13 @@ script:
   - docker-compose version
   - docker info
   - yamllint -c .yamllint .
-  - ansible-container build --use-local-python -- --diff --verbose
+  - ansible-container build --use-local-python -- --diff
   - ansible-container run
   - docker ps -a
   - docker image list
   - ansible-playbook -i localhost, -c local tests/test.yml --syntax-check
-  - ansible-playbook -i localhost, -c local tests/test.yml --diff --verbose
-  - ansible-playbook -i localhost, -c local tests/test.yml --diff --verbose
+  - ansible-playbook -i localhost, -c local tests/test.yml --diff
+  - ansible-playbook -i localhost, -c local tests/test.yml --diff
   - tail -n 1 $ANSIBLE_LOG_PATH | grep -Eq 'changed=0 +unreachable=0 +failed=0'
   - ansible-container stop --force
 
