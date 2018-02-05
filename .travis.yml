@@ -20,8 +20,9 @@ env:
 
 before_install:
   - pip install --upgrade git+git://github.com/ansible/ansible.git@stable-2.4
-  - pip install --upgrade docker docker-compose
-  - pip install --upgrade ansible-container[docker,k8s]
+  - pip install --upgrade 'docker >=2.4.0,<3.0'
+  - pip install --upgrade 'docker-compose <1.19.0'
+  - pip install --upgrade git+git://github.com/ansible/ansible-container.git@develop
 
 install:
   - pip install -r ansible-requirements.txt
